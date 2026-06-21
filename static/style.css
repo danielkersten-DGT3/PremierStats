@@ -1,0 +1,113 @@
+
+/* ================================================
+   Main stylesheet for the Pizza Website
+   All page styling is controlled from this file
+   ================================================ */
+ 
+/* Base body styling - limits width and centres the page */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	max-width: 800px;
+	margin: 20px auto;
+}
+ 
+/* Header banner with a warm background colour */
+header {
+	background: #ffe9c6;
+	padding: 12px;
+	border-radius: 8px;
+}
+ 
+/* Navigation bar below the header */
+nav {
+	margin-top: 10px;
+	padding: 10px;
+	background: #f2f2f2;
+	border-radius: 8px;
+}
+/* Space between nav links */
+nav a {
+	margin-right: 12px;
+}
+ 
+/* Footer at the bottom of every page */
+footer {
+	margin-top: 20px;
+	padding: 10px;
+	background: #f2f2f2;
+	border-radius: 8px;
+}
+
+/* ================================================
+   Pizza Grid Layout - used on the /pizzas page
+   ================================================ */
+ 
+/* Three-column grid of pizza cards */
+.pizza-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	padding: 20px;
+}
+ 
+/* Individual card container */
+.pizza-card {
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 15px;
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	/* Flex keeps all cards the same height */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+ 
+/* Card heading */
+.pizza-card h3 {
+	margin-bottom: 10px;
+}
+ 
+/* Pizza image fills the card width */
+.pizza-card img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 5px;
+}
+ 
+/* Price displayed in green */
+.price {
+	font-weight: bold;
+	margin-top: 10px;
+	color: #2c7a2c;
+}
+ 
+/* Topping pills container */
+.toppings {
+	list-style: none;
+	padding: 0;
+	margin-top: 10px;
+}
+ 
+/* Each topping displayed as a rounded pill */
+.toppings li {
+	display: inline-block;
+	background: #eee;
+	margin: 3px;
+	padding: 5px 10px;
+	border-radius: 12px;
+	font-size: 0.85em;
+}
+ 
+/* Topping list is hidden by default */
+.hidden-toppings {
+	display: none;
+	margin-top: 10px;
+}
+ 
+/* Toppings appear when hovering over the card */
+.pizza-card:hover .hidden-toppings {
+	display: block;
+}
