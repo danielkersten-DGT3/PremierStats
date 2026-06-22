@@ -60,24 +60,29 @@ def create_app():
 
     db.init_app(app)
 
-    @app.route("/")
-    def home():
-        return render_template("home.html")
+   
 
     @app.route("/clubs")
     def clubs():
         all_clubs = Clubs.query.all()
-        return render_template("clubs.html", clubs=all_clubs)
+        return render_template(
+            "clubs.html", 
+            page_title="Clubs",
+            clubs=all_clubs)
 
     @app.route("/players")
     def players():
         all_players = Players.query.all()
-        return render_template("players.html", players=all_players)
+        return render_template("players.html", 
+            page_title="Players",
+            players=all_players)
 
     @app.route("/managers")
     def managers():
         all_managers = Managers.query.all()
-        return render_template("managers.html", managers=all_managers)
+        return render_template("managers.html", 
+            page_title="Players",
+            managers=all_managers)
 
     
 

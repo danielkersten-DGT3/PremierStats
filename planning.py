@@ -65,7 +65,11 @@ def create_app():
         # and send extra values into the template:
         # - page_title can be used in the <title> tag (or headings)
         # - greeting can be displayed using {{ greeting }}
-        return render_template("home.html", page_title="Home",greeting="Kia ora! ORM Connected.")
+        return render_template(
+            "home.html", 
+            page_title="Home",
+            greeting="Kia ora! Jewish ORM Connected."
+            )
 
     #This is the "Pizzas" route
     #When a user visits http://127.0.0.1:5000/pizzas Flask runs this function
@@ -74,7 +78,7 @@ def create_app():
         pizzas = Pizza.query.order_by(Pizza.name.asc()).all()
         return render_template(
             "pizzas.html",
-            page_title = "All Pizzas",
+            page_title = "All Jew Pizzas",
             pizzas = pizzas
             )
     
@@ -84,9 +88,9 @@ def create_app():
         if pizza is None:
             abort(404)
         return render_template(
-            "pizza_detail.html", 
-            page_title=pizza.name,
-            pizza=pizza
+            "pizza_jew.html", 
+            page_title=pizza.jew,
+            jew=pizza
             )
 
     return app
