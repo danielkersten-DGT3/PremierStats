@@ -5,20 +5,32 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+clubs_players = db.Table(
+   "clubs_players",
+   db.Column(
+      "Clubid", db.Integer,
+      db.ForeignKey("Clubs.Clubid"),
+      primary_key = True
+   ),
+   db.Column(
+      "Playerid", db.Integer,
+      db.ForeignKey("Players.Playerid")
+   ),
+)
+
+
 class Clubs_Players(db.Model):
  Club_Playersid = db.Column(db.Integer, primary_key=True)
- PlayerStartDate= db.Column(db.Date, nullable=False)
- PlayerEndDate= db.Column(db.Date, nullable=False)
- Playerid = db.Column(db.Integer, foreign_key=True)
- Clubid = db.Column(db.Integer, foreign_key=True)
- Clubs = db.relationship(
-    "Clubs",
-    backref = "Clubs_Players"
-    )
- Players = db.relationship(
-    "Players",
-    backref = "Clubs_Players"
-    )
+
+ Playerid = db.Column(
+    db.Integer,
+    db.ForeignKey("players.Playerid")
+)
+
+Clubid = db.Column(
+    db.Integer,
+    db.ForeignKey("clubs.Clubid")
+)
     
 
 class Clubs(db.Model):
@@ -37,6 +49,8 @@ class Players(db.Model):
     Goals = db.Column(db.Integer, nullable=False)
     Assists = db.Column(db.Integer, nullable=False)
     Saves = db.Column(db.Integer, nullable=False)
+    PlayerStartDate= db.Column(db.Date, nullable=False)
+    PlayerEndDate= db.Column(db.Date, nullable=False)
     clubs_players = db.relationship(
         "Clubs_Players",
         backref = "players"
@@ -84,8 +98,7 @@ def create_app():
             page_title="Players",
             managers=all_managers)
 
-    
-
+    return app
 
 
 app = create_app()

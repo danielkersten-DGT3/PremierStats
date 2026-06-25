@@ -1,7 +1,7 @@
 #planning file - not connected to app
-from flask_sqlalchemy import SQAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
-db = SQAlchemy()
+db = SQLAlchemy()
 
 pizza_topping=db.Table(
 "pizza_topping",
