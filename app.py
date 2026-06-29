@@ -97,6 +97,17 @@ def create_app():
         return render_template("managers.html", 
             page_title="Players",
             managers=all_managers)
+    @app.route("/")
+    def root():
+        # Load the template file templates/home.html
+        # and send extra values into the template:
+        # - page_title can be used in the <title> tag (or headings)
+        # - greeting can be displayed using {{ greeting }}
+        return render_template(
+            "home.html", 
+            page_title="Home",
+            greeting="Kia ora! ORM Connected."
+            )
 
     return app
 

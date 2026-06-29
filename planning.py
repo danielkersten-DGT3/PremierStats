@@ -1,4 +1,5 @@
 #planning file - not connected to app
+from 
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -6,12 +7,12 @@ db = SQLAlchemy()
 pizza_topping=db.Table(
 "pizza_topping",
 db.Column(
-    "pizza_id", db.integer,
+    "pizza_id", db.Integer,
     db.ForeignKey("pizza.id"), #points to pizza table
     primary_key=True
 ),
 db.Column(
-    "topping_id", db.integer,
+    "topping_id", db.Integer,
     db.ForeignKey("topping.id"), #points to topping table
     primary_key=True
 ),
