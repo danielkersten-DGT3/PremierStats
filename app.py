@@ -2,45 +2,30 @@
 and render_template (to load an HTML file from the templates folder)'''
 from flask import Flask, render_template, abort, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
 
 db = SQLAlchemy()
 
 clubs_players = db.Table(
-   "clubs_players",
-   db.Column(
-      "Clubid", db.Integer,
-      db.ForeignKey("Clubs.Clubid"),
-      primary_key = True
-   ),
-   db.Column(
-      "Playerid", db.Integer,
-      db.ForeignKey("Players.Playerid")
-   ),
+    "clubs_players",
+    db.Column("Clubid", db.Integer, db.ForeignKey("clubs.Clubid"), primary_key=True),
+    db.Column("Playerid", db.Integer, db.ForeignKey("players.Playerid"), primary_key=True),
 )
-
-
-class Clubs_Players(db.Model):
- Club_Playersid = db.Column(db.Integer, primary_key=True)
-
- Playerid = db.Column(
-    db.Integer,
-    db.ForeignKey("players.Playerid")
-)
-
-Clubid = db.Column(
-    db.Integer,
-    db.ForeignKey("clubs.Clubid")
-)
-    
 
 class Clubs(db.Model):
-   Clubid = db.Column(db.Integer, primary_key=True)
-   name = db.Column(db.String(80), nullable=False)
-   Wins = db.Column(db.Integer, nullable=False)
-   Losses = db.Column(db.Integer, nullable=False)
-   clubs_players = db.relationship(
-        "Clubs_Players",
-        backref = "clubs"
+    Clubid = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    Wins = db.Column(db.Integer, nullable=False)
+    Losses = db.Column(db.Integer, nullable=False)
+    Managerid = db.Column(
+    db.Integer,
+    db.ForeignKey("managers.Managerid")
+)
+
+    players = db.relationship(
+        "Players",
+        secondary=clubs_players,
+        back_populates="clubs"
     )
 
 class Players(db.Model):
@@ -49,20 +34,22 @@ class Players(db.Model):
     Goals = db.Column(db.Integer, nullable=False)
     Assists = db.Column(db.Integer, nullable=False)
     Saves = db.Column(db.Integer, nullable=False)
-    PlayerStartDate= db.Column(db.Date, nullable=False)
-    PlayerEndDate= db.Column(db.Date, nullable=False)
-    clubs_players = db.relationship(
-        "Clubs_Players",
-        backref = "players"
+    PlayerStartDate = db.Column(db.Date, nullable=False)
+    PlayerEndDate = db.Column(db.Date, nullable=False)
+
+    clubs = db.relationship(
+        "Clubs",
+        secondary=clubs_players,
+        back_populates="players"
     )
 
 class Managers(db.Model):
     Managerid = db.Column(db.Integer, primary_key=True)
-    Name = db.Column(db.String(80), primary_key=True)
+    Name = db.Column(db.String(80), nullable=False)
     clubs = db.relationship(
-        "Clubs",
-        backref = "managers"
-    )
+    "Clubs",
+    backref="manager"
+)
 
 
 def create_app():
@@ -78,31 +65,31 @@ def create_app():
         if Clubs.query.count() == 0:
 
             arsenal = Clubs(
-                ClubName="Arsenal",
+                name="Arsenal",
                 Wins=20,
                 Losses=6
             )
 
             liverpool = Clubs(
-                ClubName="Liverpool",
+                name="Liverpool",
                 Wins=25,
                 Losses=4
             )
 
             mancity = Clubs(
-                ClubName="Manchester City",
+                name="Manchester City",
                 Wins=21,
                 Losses=7
             )
 
             chelsea = Clubs(
-                ClubName="Chelsea",
+                name="Chelsea",
                 Wins=18,
                 Losses=8
             )
 
             manunited = Clubs(
-                ClubName="Manchester United",
+                name="Manchester United",
                 Wins=16,
                 Losses=10
             )
@@ -128,81 +115,93 @@ def create_app():
                 m_maresca,
                 m_amorim
             ])
+            arsenal.manager = m_arteta
+            liverpool.manager = m_slot
+            mancity.manager = m_guardiola
+            chelsea.manager = m_maresca
+            manunited.manager = m_amorim
+
         if Players.query.count() == 0:
-            p_saka = Players(
-                Name="Bukayo Saka",
-                Goals=12,
-                Assists=10,
-                Saves=0,
-                StartDate="2020-09-01",
-                EndDate=None
-            )
+                p_saka = Players(
+                    name="Bukayo Saka",
+                    Goals=12,
+                    Assists=10,
+                    Saves=0,
+                    PlayerStartDate=date(2020, 9, 1),
+                    PlayerEndDate=date(2030, 6, 30)
+                )
 
-            p_rice = Players(
-                Name="Declan Rice",
-                Goals=7,
-                Assists=8,
-                Saves=0,
-                StartDate="2023-07-15",
-                EndDate=None
-            )
+                p_rice = Players(
+                    name="Declan Rice",
+                    Goals=7,
+                    Assists=8,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 7, 15),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
 
-            p_haaland = Players(
-                Name="Erling Haaland",
-                Goals=27,
-                Assists=5,
-                Saves=0,
-                StartDate="2022-07-01",
-                EndDate=None
-            )
+                p_haaland = Players(
+                    name="Erling Haaland",
+                    Goals=27,
+                    Assists=5,
+                    Saves=0,
+                    PlayerStartDate=date(2022, 7, 1),
+                    PlayerEndDate=date(2030, 6, 30)
+                )
 
-            p_salah = Players(
-                Name="Mohamed Salah",
-                Goals=24,
-                Assists=16,
-                Saves=0,
-                StartDate="2017-07-01",
-                EndDate=None
-            )
+                p_salah = Players(
+                    name="Mohamed Salah",
+                    Goals=24,
+                    Assists=16,
+                    Saves=0,
+                    PlayerStartDate=date(2017, 7, 1),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
 
-            p_palmer = Players(
-                Name="Cole Palmer",
-                Goals=16,
-                Assists=11,
-                Saves=0,
-                StartDate="2023-09-01",
-                EndDate=None
-            )
+                p_palmer = Players(
+                    name="Cole Palmer",
+                    Goals=16,
+                    Assists=11,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 9, 1),
+                    PlayerEndDate=date(2030, 6, 30)
+                )
 
-            p_onana = Players(
-                Name="Andre Onana",
-                Goals=0,
-                Assists=0,
-                Saves=124,
-                StartDate="2023-07-20",
-                EndDate=None
-            )
+                p_onana = Players(
+                    name="Andre Onana",
+                    Goals=0,
+                    Assists=0,
+                    Saves=124,
+                    PlayerStartDate=date(2023, 7, 20),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
 
-            p_alisson = Players(
-                Name="Alisson Becker",
-                Goals=0,
-                Assists=1,
-                Saves=132,
-                StartDate="2018-07-19",
-                EndDate=None
-            )
+                p_alisson = Players(
+                    name="Alisson Becker",
+                    Goals=0,
+                    Assists=1,
+                    Saves=132,
+                    PlayerStartDate=date(2018, 7, 19),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
 
-            db.session.add_all([
-                p_saka,
-                p_rice,
-                p_haaland,
-                p_salah,
-                p_palmer,
-                p_onana,
-                p_alisson
-            ])
+                db.session.add_all([
+                    p_saka,
+                    p_rice,
+                    p_haaland,
+                    p_salah,
+                    p_palmer,
+                    p_onana,
+                    p_alisson
+                ])
+                arsenal.players.extend([p_saka, p_rice])
+                liverpool.players.extend([p_salah, p_alisson])
+                mancity.players.append(p_haaland)
+                chelsea.players.append(p_palmer)
+                manunited.players.append(p_onana)
 
-            db.session.commit()
+
+                db.session.commit()
 
    
 
@@ -246,38 +245,6 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True, host="127.0.0.1", port=5000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
