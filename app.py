@@ -209,7 +209,7 @@ def create_app():
     def clubs():
         all_clubs = Clubs.query.all()
         return render_template(
-            "clubs.html", 
+            "Clubs.html", 
             page_title="Clubs",
             clubs=all_clubs)
 
