@@ -1,6 +1,6 @@
 <nav>
-  <a href="/">Home</a>
-  <a href="/Clubs">Clubs</a>
-  <a href="/Players">Players</a>
-  <a href="/Managers">Managers</a>
+  <a href="{{ url_for('root') }}">Home</a>
+  <a href="{{ url_for('clubs') }}">Clubs</a>
+  <a href="{{ url_for('players') }}">Players</a>
+  <a href="{{ url_for('managers') }}">Managers</a>
 </nav>

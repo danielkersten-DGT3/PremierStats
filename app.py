@@ -20,7 +20,7 @@ class Clubs(db.Model):
     Managerid = db.Column(
     db.Integer,
     db.ForeignKey("managers.Managerid")
-)
+)       
 
     players = db.relationship(
         "Players",
@@ -54,7 +54,7 @@ class Managers(db.Model):
 
 def create_app():
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pizza.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///football.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SECRET_KEY"] = "BenceJamesRussell"
 

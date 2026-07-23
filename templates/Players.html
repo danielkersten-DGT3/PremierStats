@@ -1,35 +1,46 @@
 {% extends "layout.html" %}
+
 {% block content %}
- 
-<h1>Our Pizzas</h1>
- 
-<!-- Pizza grid - three columns, one card per pizza -->
-<div class="pizza-grid">
- 
-  {% for pizza in pizzas %}
-  <!-- Individual pizza card -->
-  <div class="pizza-card">
- 
-	<h3>{{ pizza.name }}</h3>
- 
-	<!-- Price formatted to 2 decimal places -->
-	<p class="price">${{ "%.2f"|format(pizza.price) }}</p>
- 
-	<!-- Toppings are hidden until the user hovers over the card -->
-	<div class="hidden-toppings">
-  	<ul class="toppings">
-    	{% for topping in pizza.toppings %}
-      	<li>{{ topping.name }}</li>
-    	{% endfor %}
-  	</ul>
-	</div>
- 
-	<!-- Link to the detail page for this pizza -->
-	<a href="/pizzas/{{ pizza.id }}">View Pizza</a>
- 
-  </div>
-  {% endfor %}
- 
-</div>
- 
+
+<h1>{{ page_title }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Goals</th>
+            <th>Assists</th>
+            <th>Saves</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Clubs</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.name }}</td>
+            <td>{{ player.Goals }}</td>
+            <td>{{ player.Assists }}</td>
+            <td>{{ player.Saves }}</td>
+            <td>{{ player.PlayerStartDate }}</td>
+            <td>{{ player.PlayerEndDate }}</td>
+
+            <td>
+                {% if player.clubs %}
+                    <ul>
+                    {% for club in player.clubs %}
+                        <li>{{ club.name }}</li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    No Club
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

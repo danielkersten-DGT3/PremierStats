@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>{{Club List}}</h1>
+<h1>Club List</h1>
 
 <table>
     <thead>
@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for clubs in all_clubs %}
+        {% for club in clubs %}
         <tr>
             <td>{{ club.name }}</td>
             <td>{{ club.Wins }}</td>

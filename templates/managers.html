@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>{{ page_title }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Manager</th>
+            <th>Club</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for manager in managers %}
+        <tr>
+            <td>{{ manager.Name }}</td>
+            <td>
+                {% if manager.clubs %}
+                    <ul>
+                        {% for club in manager.clubs %}
+                            <li>{{ club.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    No Club
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
