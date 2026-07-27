@@ -237,6 +237,22 @@ def create_app():
             page_title="Home",
             greeting="Kia ora! ORM Connected."
             )
+    @app.route("/manager/<int:Managerid>")
+    def manager(Managerid):
+        manager = Managers.query.get_or_404(Managerid)
+        return render_template(
+            "manager.html",
+            manager=manager
+        )
+    @app.route("/player/<int:Playerid>")
+    def player(Playerid):
+        player = Players.query.get_or_404(Playerid)
+
+        return render_template(
+            "player.html",
+            page_title=player.name,
+            player=player
+        )
 
     return app
 

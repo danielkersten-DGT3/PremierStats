@@ -15,7 +15,12 @@
     <tbody>
         {% for manager in managers %}
         <tr>
-            <td>{{ manager.Name }}</td>
+            <td>
+                <a href="{{ url_for('manager', Managerid=manager.Managerid) }}">
+                    {{ manager.Name }}
+                </a>
+            </td>
+
             <td>
                 {% if manager.clubs %}
                     <ul>

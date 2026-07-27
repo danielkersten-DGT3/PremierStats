@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>{{ manager.Name }}</h1>
+
+<h2>Club</h2>
+
+{% if manager.clubs %}
+    {% for club in manager.clubs %}
+        <p>{{ club.name }}</p>
+        <p>Wins: {{ club.Wins }}</p>
+        <p>Losses: {{ club.Losses }}</p>
+    {% endfor %}
+{% else %}
+    <p>No club assigned.</p>
+{% endif %}
+
+<a href="{{ url_for('managers') }}">Back to Managers</a>
+
+{% endblock %}

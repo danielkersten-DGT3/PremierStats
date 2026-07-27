@@ -7,20 +7,25 @@
 <table>
     <thead>
         <tr>
-            <th>Name</th>
+            <th>Player</th>
             <th>Goals</th>
             <th>Assists</th>
             <th>Saves</th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Clubs</th>
+            <th>Club</th>
         </tr>
     </thead>
 
     <tbody>
         {% for player in players %}
         <tr>
-            <td>{{ player.name }}</td>
+            <td>
+                <a href="{{ url_for('player', Playerid=player.Playerid) }}">
+                    {{ player.name }}
+                </a>
+            </td>
+
             <td>{{ player.Goals }}</td>
             <td>{{ player.Assists }}</td>
             <td>{{ player.Saves }}</td>
@@ -30,9 +35,9 @@
             <td>
                 {% if player.clubs %}
                     <ul>
-                    {% for club in player.clubs %}
-                        <li>{{ club.name }}</li>
-                    {% endfor %}
+                        {% for club in player.clubs %}
+                            <li>{{ club.name }}</li>
+                        {% endfor %}
                     </ul>
                 {% else %}
                     No Club
