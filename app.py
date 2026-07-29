@@ -184,6 +184,176 @@ def create_app():
                     PlayerStartDate=date(2018, 7, 19),
                     PlayerEndDate=date(2027, 6, 30)
                 )
+                p_martinelli = Players(
+                    name="Gabriel Martinelli",
+                    Goals=8,
+                    Assists=6,
+                    Saves=0,
+                    PlayerStartDate=date(2019, 7, 1),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
+
+                p_odegaard = Players(
+                    name="Martin Odegaard",
+                    Goals=6,
+                    Assists=9,
+                    Saves=0,
+                    PlayerStartDate=date(2021, 8, 20),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
+
+                p_saliba = Players(
+                    name="William Saliba",
+                    Goals=2,
+                    Assists=1,
+                    Saves=0,
+                    PlayerStartDate=date(2019, 7, 25),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
+
+                p_van_dijk = Players(
+                    name="Virgil van Dijk",
+                    Goals=3,
+                    Assists=2,
+                    Saves=0,
+                    PlayerStartDate=date(2018, 1, 1),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
+
+                p_diaz = Players(
+                    name="Luis Diaz",
+                    Goals=10,
+                    Assists=5,
+                    Saves=0,
+                    PlayerStartDate=date(2022, 1, 30),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
+
+                p_mac_allister = Players(
+                    name="Alexis Mac Allister",
+                    Goals=5,
+                    Assists=6,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 7, 1),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
+
+                p_foden = Players(
+                    name="Phil Foden",
+                    Goals=14,
+                    Assists=8,
+                    Saves=0,
+                    PlayerStartDate=date(2017, 7, 1),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
+
+                p_de_bruyne = Players(
+                    name="Kevin De Bruyne",
+                    Goals=5,
+                    Assists=10,
+                    Saves=0,
+                    PlayerStartDate=date(2015, 8, 30),
+                    PlayerEndDate=date(2025, 6, 30)
+                )
+
+                p_ruben_dias = Players(
+                    name="Ruben Dias",
+                    Goals=2,
+                    Assists=1,
+                    Saves=0,
+                    PlayerStartDate=date(2020, 9, 29),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
+
+                p_nicolas_jackson = Players(
+                    name="Nicolas Jackson",
+                    Goals=9,
+                    Assists=4,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 7, 1),
+                    PlayerEndDate=date(2030, 6, 30)
+                )
+
+                p_enzo = Players(
+                    name="Enzo Fernandez",
+                    Goals=4,
+                    Assists=7,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 1, 31),
+                    PlayerEndDate=date(2031, 6, 30)
+                )
+
+                p_madueke = Players(
+                    name="Noni Madueke",
+                    Goals=6,
+                    Assists=3,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 1, 23),
+                    PlayerEndDate=date(2030, 6, 30)
+                )
+
+                p_bruno = Players(
+                    name="Bruno Fernandes",
+                    Goals=10,
+                    Assists=9,
+                    Saves=0,
+                    PlayerStartDate=date(2020, 1, 30),
+                    PlayerEndDate=date(2027, 6, 30)
+                )
+
+                p_garnacho = Players(
+                    name="Alejandro Garnacho",
+                    Goals=7,
+                    Assists=5,
+                    Saves=0,
+                    PlayerStartDate=date(2022, 7, 1),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
+
+                p_mainoo = Players(
+                    name="Kobbie Mainoo",
+                    Goals=3,
+                    Assists=2,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 1, 1),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
+
+                p_isak = Players(
+                    name="Alexander Isak",
+                    Goals=15,
+                    Assists=4,
+                    Saves=0,
+                    PlayerStartDate=date(2022, 8, 26),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
+
+                p_gordon = Players(
+                    name="Anthony Gordon",
+                    Goals=8,
+                    Assists=6,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 1, 1),
+                    PlayerEndDate=date(2029, 6, 30)
+                )
+
+                p_son = Players(
+                    name="Son Heung-min",
+                    Goals=12,
+                    Assists=8,
+                    Saves=0,
+                    PlayerStartDate=date(2015, 8, 28),
+                    PlayerEndDate=date(2026, 6, 30)
+                )
+
+                p_maddison = Players(
+                    name="James Maddison",
+                    Goals=7,
+                    Assists=8,
+                    Saves=0,
+                    PlayerStartDate=date(2023, 7, 1),
+                    PlayerEndDate=date(2028, 6, 30)
+                )
 
                 db.session.add_all([
                     p_saka,
@@ -193,13 +363,62 @@ def create_app():
                     p_palmer,
                     p_onana,
                     p_alisson
+                    p_martinelli,
+                    p_odegaard,
+                    p_saliba,
+                    p_van_dijk,
+                    p_diaz,
+                    p_mac_allister,
+                    p_foden,
+                    p_de_bruyne,
+                    p_ruben_dias,
+                    p_nicolas_jackson,
+                    p_enzo,
+                    p_madueke,
+                    p_bruno,
+                    p_garnacho,
+                    p_mainoo,
+                    p_isak,
+                    p_gordon,
+                    p_son,
+                    p_maddison
                 ])
-                arsenal.players.extend([p_saka, p_rice])
-                liverpool.players.extend([p_salah, p_alisson])
-                mancity.players.append(p_haaland)
-                chelsea.players.append(p_palmer)
-                manunited.players.append(p_onana)
+                arsenal.players.extend([
+    p_saka,
+    p_rice,
+    p_martinelli,
+    p_odegaard,
+    p_saliba
+])
 
+        liverpool.players.extend([
+            p_salah,
+            p_alisson,
+            p_van_dijk,
+            p_diaz,
+            p_mac_allister
+        ])
+
+        mancity.players.extend([
+            p_haaland,
+            p_foden,
+            p_de_bruyne,
+            p_ruben_dias
+        ])
+
+        chelsea.players.extend([
+            p_palmer,
+            p_nicolas_jackson,
+            p_enzo,
+            p_madueke
+        ])
+
+        manunited.players.extend([
+            p_onana,
+            p_bruno,
+            p_garnacho,
+            p_mainoo
+        ])
 
                 db.session.commit()
 
@@ -253,7 +472,15 @@ def create_app():
             page_title=player.name,
             player=player
         )
+    @app.route("/club/<int:Clubid>")
+    def club(Clubid):
+        club = Clubs.query.get_or_404(Clubid)
 
+        return render_template(
+            "club.html",
+            page_title=club.name,
+            club=club
+        )
     return app
 
 

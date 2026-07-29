@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Club List</h1>
+<h1>{{ page_title }}</h1>
 
 <table>
     <thead>
@@ -14,12 +14,19 @@
             <th>Players</th>
         </tr>
     </thead>
+
     <tbody>
         {% for club in clubs %}
         <tr>
-            <td>{{ club.name }}</td>
+            <td>
+                <a href="{{ url_for('club', Clubid=club.Clubid) }}">
+                    {{ club.name }}
+                </a>
+            </td>
+
             <td>{{ club.Wins }}</td>
             <td>{{ club.Losses }}</td>
+
             <td>
                 {% if club.manager %}
                     {{ club.manager.Name }}
@@ -27,6 +34,7 @@
                     No Manager
                 {% endif %}
             </td>
+
             <td>
                 {% if club.players %}
                     <ul>

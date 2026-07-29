@@ -1,8 +1,3 @@
-    )
-3. Create player.html
-
-Put this inside your templates folder:
-
 {% extends "layout.html" %}
 
 {% block content %}
@@ -42,7 +37,9 @@ Put this inside your templates folder:
         <td>
             {% if player.clubs %}
                 {% for club in player.clubs %}
-                    {{ club.name }}
+                    <a href="{{ url_for('club', Clubid=club.Clubid) }}">
+                        {{ club.name }}
+                    </a>
                 {% endfor %}
             {% else %}
                 No Club

@@ -34,11 +34,11 @@
 
             <td>
                 {% if player.clubs %}
-                    <ul>
-                        {% for club in player.clubs %}
-                            <li>{{ club.name }}</li>
-                        {% endfor %}
-                    </ul>
+                    {% for club in player.clubs %}
+                        <a href="{{ url_for('club', Clubid=club.Clubid) }}">
+                            {{ club.name }}
+                        </a>
+                    {% endfor %}
                 {% else %}
                     No Club
                 {% endif %}

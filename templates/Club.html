@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>{{ club.name }}</h1>
+
+<h2>Club Information</h2>
+
+<table>
+    <tr>
+        <th>Club Name</th>
+        <td>{{ club.name }}</td>
+    </tr>
+
+    <tr>
+        <th>Wins</th>
+        <td>{{ club.Wins }}</td>
+    </tr>
+
+    <tr>
+        <th>Losses</th>
+        <td>{{ club.Losses }}</td>
+    </tr>
+
+    <tr>
+        <th>Manager</th>
+        <td>
+            {% if club.manager %}
+                {{ club.manager.Name }}
+            {% else %}
+                No Manager
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
+<h2>Players</h2>
+
+{% if club.players %}
+    <ul>
+        {% for player in club.players %}
+            <li>
+                <a href="{{ url_for('player', Playerid=player.Playerid) }}">
+                    {{ player.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No Players</p>
+{% endif %}
+
+<br>
+
+<a href="{{ url_for('clubs') }}">Back to Clubs</a>
+
+{% endblock %}
