@@ -481,6 +481,36 @@ def create_app():
             page_title=club.name,
             club=club
         )
+    @app.route("/login", methods=["GET", "POST"])
+    def login():
+        if request.method == "POST":
+            username = request.form["username"]
+            password = request.form["password"]
+
+            if username == "admin" and password == "football":
+                session["username"] = username
+                return redirect(url_for("profile"))
+
+            return render_template(
+                "login.html",
+                error="Incorrect username or password"
+            )
+        return render_template("login.html")
+
+    @app.route("/profile")
+    def profile():
+        if "username" not in session:
+            return redirect(url_for("login"))
+
+        return render_template(
+            "profile.html",
+             username=session["username"]
+        )
+
+    @app.route("/logout")
+    def logout():
+        session.pop("username", None)
+        return redirect(url_for("root"))
     return app
 
 

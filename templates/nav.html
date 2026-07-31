@@ -1,6 +1,13 @@
 <nav>
-  <a href="{{ url_for('root') }}">Home</a>
-  <a href="{{ url_for('clubs') }}">Clubs</a>
-  <a href="{{ url_for('players') }}">Players</a>
-  <a href="{{ url_for('managers') }}">Managers</a>
+    <a href="{{ url_for('root') }}">Home</a>
+    <a href="{{ url_for('clubs') }}">Clubs</a>
+    <a href="{{ url_for('players') }}">Players</a>
+    <a href="{{ url_for('managers') }}">Managers</a>
+
+    {% if session.get("username") %}
+        <a href="{{ url_for('profile') }}">Profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
 </nav>
