@@ -362,7 +362,7 @@ def create_app():
                     p_salah,
                     p_palmer,
                     p_onana,
-                    p_alisson
+                    p_alisson,
                     p_martinelli,
                     p_odegaard,
                     p_saliba,
@@ -384,41 +384,41 @@ def create_app():
                     p_maddison
                 ])
                 arsenal.players.extend([
-    p_saka,
-    p_rice,
-    p_martinelli,
-    p_odegaard,
-    p_saliba
-])
+                p_saka,
+                p_rice,
+                p_martinelli,
+                p_odegaard,
+                p_saliba
+                ])
 
-        liverpool.players.extend([
-            p_salah,
-            p_alisson,
-            p_van_dijk,
-            p_diaz,
-            p_mac_allister
-        ])
+                liverpool.players.extend([
+                        p_salah,
+                        p_alisson,
+                        p_van_dijk,
+                        p_diaz,
+                        p_mac_allister
+                    ])
 
-        mancity.players.extend([
-            p_haaland,
-            p_foden,
-            p_de_bruyne,
-            p_ruben_dias
-        ])
+                mancity.players.extend([
+                        p_haaland,
+                        p_foden,
+                        p_de_bruyne,
+                        p_ruben_dias
+                    ])
 
-        chelsea.players.extend([
-            p_palmer,
-            p_nicolas_jackson,
-            p_enzo,
-            p_madueke
-        ])
+                chelsea.players.extend([
+                        p_palmer,
+                        p_nicolas_jackson,
+                        p_enzo,
+                        p_madueke
+                    ])
 
-        manunited.players.extend([
-            p_onana,
-            p_bruno,
-            p_garnacho,
-            p_mainoo
-        ])
+                manunited.players.extend([
+                        p_onana,
+                        p_bruno,
+                        p_garnacho,
+                        p_mainoo
+                    ])
 
                 db.session.commit()
 
