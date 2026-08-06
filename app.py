@@ -51,6 +51,11 @@ class Managers(db.Model):
     backref="manager"
 )
 
+class Users(db.Model):
+    Userid = db.Column(db.Integer, primary_key=True)
+    Username = db.Column(db.String(80), unique=True, nullable=False)
+    Email = db.Column(db.String(120), unique=True, nullable=False)
+    Password = db.Column(db.String(200), nullable=False)
 
 def create_app():
     app = Flask(__name__)
@@ -481,37 +486,102 @@ def create_app():
             page_title=club.name,
             club=club
         )
+    
     @app.route("/login", methods=["GET", "POST"])
     def login():
+
         if request.method == "POST":
-            username = request.form["username"]
+
+            login_input = request.form["login"]
             password = request.form["password"]
 
-            if username == "admin" and password == "football":
-                session["username"] = username
+            user = Users.query.filter(
+                (Users.Username == login_input) |
+                (Users.Email == login_input)
+            ).first()
+
+            if user and user.Password == password:
+
+                session["username"] = user.Username
+                session["userid"] = user.Userid
+
                 return redirect(url_for("profile"))
 
             return render_template(
                 "login.html",
-                error="Incorrect username or password"
+                error="Incorrect username/email or password"
             )
+
         return render_template("login.html")
 
+    
     @app.route("/profile")
     def profile():
-        if "username" not in session:
+        if "userid" not in session:
+            return redirect(url_for("login"))
+
+        user = Users.query.get(session["userid"])
+
+        if user is None:
             return redirect(url_for("login"))
 
         return render_template(
             "profile.html",
-             username=session["username"]
-        )
+            username=user.Username,
+            email=user.Email
+    )
+
+
+
+    @app.route("/register", methods=["GET", "POST"])
+    def register():
+        if request.method == "POST":
+            username = request.form["username"]
+            email = request.form["email"]
+            password = request.form["password"]
+
+                # Check if username already exists
+            existing_user = Users.query.filter_by(
+                    Username=username
+                ).first()
+
+            if existing_user:
+                    return render_template(
+                        "register.html",
+                        error="Username already exists"
+                    )
+
+                # Check if email already exists
+            existing_email = Users.query.filter_by(
+                    Email=email
+                ).first()
+
+            if existing_email:
+                    return render_template(
+                        "register.html",
+                        error="Email already exists"
+                    )
+
+            # Create new user
+            new_user = Users(
+                Username=username,
+                Email=email,
+                Password=password
+            )
+
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for("login"))
+        return render_template("register.html")
+
+
 
     @app.route("/logout")
     def logout():
         session.pop("username", None)
         return redirect(url_for("root"))
     return app
+
 
 
 app = create_app()
