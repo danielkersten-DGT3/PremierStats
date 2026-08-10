@@ -2,53 +2,58 @@
 
 {% block content %}
 
-<h3>{{ page_title }}</h3>
+<h1>{{ club.name }}</h1>
+
+<h2>Club Information</h2>
 
 <table>
-    <thead>
-        <tr>
-            <th>Club</th>
-            <th>Wins</th>
-            <th>Losses</th>
-            <th>Manager</th>
-            <th>Players</th>
-        </tr>
-    </thead>
+    <tr>
+        <th>Club Name</th>
+        <td>{{ club.name }}</td>
+    </tr>
 
-    <tbody>
-        {% for club in clubs %}
-        <tr>
-            <td>
-                <a href="{{ url_for('club', Clubid=club.Clubid) }}">
-                    {{ club.name }}
-                </a>
-            </td>
+    <tr>
+        <th>Wins</th>
+        <td>{{ club.Wins }}</td>
+    </tr>
 
-            <td>{{ club.Wins }}</td>
-            <td>{{ club.Losses }}</td>
+    <tr>
+        <th>Losses</th>
+        <td>{{ club.Losses }}</td>
+    </tr>
 
-            <td>
-                {% if club.manager %}
+    <tr>
+        <th>Manager</th>
+        <td>
+            {% if club.manager %}
+                <a href="{{ url_for('manager', Managerid=club.manager.Managerid) }}">
                     {{ club.manager.Name }}
-                {% else %}
-                    No Manager
-                {% endif %}
-            </td>
-
-            <td>
-                {% if club.players %}
-                    <ul>
-                        {% for player in club.players %}
-                            <li>{{ player.name }}</li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    No Players
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+                </a>
+            {% else %}
+                No Manager
+            {% endif %}
+        </td>
+    </tr>
 </table>
+
+<h2>Players</h2>
+
+{% if club.players %}
+<ul>
+    {% for player in club.players %}
+        <li>
+            <a href="{{ url_for('player', Playerid=player.Playerid) }}">
+                {{ player.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No Players</p>
+{% endif %}
+
+<p>
+    <a href="{{ url_for('clubs') }}">← Back to Clubs</a>
+</p>
 
 {% endblock %}

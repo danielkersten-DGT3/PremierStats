@@ -26,7 +26,9 @@
         <th>Manager</th>
         <td>
             {% if club.manager %}
-                {{ club.manager.Name }}
+                <a href="{{ url_for('manager', managerid=club.manager.Managerid) }}">
+                    {{ club.manager.Name }}
+                </a>
             {% else %}
                 No Manager
             {% endif %}
@@ -37,21 +39,21 @@
 <h2>Players</h2>
 
 {% if club.players %}
-    <ul>
-        {% for player in club.players %}
-            <li>
-                <a href="{{ url_for('player', Playerid=player.Playerid) }}">
-                    {{ player.name }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for player in club.players %}
+    <li>
+        <a href="{{ url_for('player', playerid=player.Playerid) }}">
+            {{ player.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
 {% else %}
-    <p>No Players</p>
+<p>No Players</p>
 {% endif %}
 
-<br>
-
-<a href="{{ url_for('clubs') }}">Back to Clubs</a>
+<p>
+    <a href="{{ url_for('clubs') }}">← Back to Clubs</a>
+</p>
 
 {% endblock %}
