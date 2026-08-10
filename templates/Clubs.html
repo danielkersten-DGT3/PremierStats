@@ -2,28 +2,38 @@
 
 {% block content %}
 
-<h1>{{ club.name }}</h1>
-
-<h2>Club Information</h2>
+<h3>{{ page_title }}</h3>
 
 <table>
-    <tr>
-        <th>Club Name</th>
-        <td>{{ club.name }}</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>Club</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Manager</th>
+            <th>Players</th>
+        </tr>
+    </thead>
 
+
+<tbody>
+    {% for club in clubs %}
     <tr>
-        <th>Wins</th>
+
+        <!-- Club name -->
+        <td>
+            <a href="{{ url_for('club', Clubid=club.Clubid) }}">
+                {{ club.name }}
+            </a>
+        </td>
+
+        <!-- Wins -->
         <td>{{ club.Wins }}</td>
-    </tr>
 
-    <tr>
-        <th>Losses</th>
+        <!-- Losses -->
         <td>{{ club.Losses }}</td>
-    </tr>
 
-    <tr>
-        <th>Manager</th>
+        <!-- Manager -->
         <td>
             {% if club.manager %}
                 <a href="{{ url_for('manager', Managerid=club.manager.Managerid) }}">
@@ -33,27 +43,28 @@
                 No Manager
             {% endif %}
         </td>
+
+        <!-- Players -->
+        <td>
+            {% if club.players %}
+                <ul>
+                    {% for player in club.players %}
+                    <li>
+                        <a href="{{ url_for('player', Playerid=player.Playerid) }}">
+                            {{ player.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                No Players
+            {% endif %}
+        </td>
+
     </tr>
-</table>
-
-<h2>Players</h2>
-
-{% if club.players %}
-<ul>
-    {% for player in club.players %}
-        <li>
-            <a href="{{ url_for('player', Playerid=player.Playerid) }}">
-                {{ player.name }}
-            </a>
-        </li>
     {% endfor %}
-</ul>
-{% else %}
-<p>No Players</p>
-{% endif %}
+</tbody>
 
-<p>
-    <a href="{{ url_for('clubs') }}">← Back to Clubs</a>
-</p>
+</table>
 
 {% endblock %}

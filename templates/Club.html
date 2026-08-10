@@ -12,40 +12,45 @@
         <td>{{ club.name }}</td>
     </tr>
 
-    <tr>
-        <th>Wins</th>
-        <td>{{ club.Wins }}</td>
-    </tr>
 
-    <tr>
-        <th>Losses</th>
-        <td>{{ club.Losses }}</td>
-    </tr>
+<tr>
+    <th>Wins</th>
+    <td>{{ club.Wins }}</td>
+</tr>
 
-    <tr>
-        <th>Manager</th>
-        <td>
-            {% if club.manager %}
-                <a href="{{ url_for('manager', managerid=club.manager.Managerid) }}">
-                    {{ club.manager.Name }}
-                </a>
-            {% else %}
-                No Manager
-            {% endif %}
-        </td>
-    </tr>
+<tr>
+    <th>Losses</th>
+    <td>{{ club.Losses }}</td>
+</tr>
+
+<tr>
+    <th>Manager</th>
+    <td>
+        {% if club.manager %}
+            <a href="{{ url_for('manager', Managerid=club.manager.Managerid) }}">
+                {{ club.manager.Name }}
+            </a>
+        {% else %}
+            No Manager
+        {% endif %}
+    </td>
+</tr>
+
+
+
 </table>
 
 <h2>Players</h2>
 
 {% if club.players %}
+
 <ul>
     {% for player in club.players %}
-    <li>
-        <a href="{{ url_for('player', playerid=player.Playerid) }}">
-            {{ player.name }}
-        </a>
-    </li>
+        <li>
+            <a href="{{ url_for('player', Playerid=player.Playerid) }}">
+                {{ player.name }}
+            </a>
+        </li>
     {% endfor %}
 </ul>
 {% else %}
@@ -53,7 +58,7 @@
 {% endif %}
 
 <p>
-    <a href="{{ url_for('clubs') }}">← Back to Clubs</a>
+    <a href="{{ url_for('clubs') }}"> Back to Clubs</a>
 </p>
 
 {% endblock %}
