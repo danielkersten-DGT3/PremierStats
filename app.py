@@ -3,7 +3,6 @@ and render_template (to load an HTML file from the templates folder)'''
 from flask import Flask, render_template, abort, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
-
 db = SQLAlchemy()
 
 clubs_players = db.Table(
