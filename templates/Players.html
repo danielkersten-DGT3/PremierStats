@@ -4,6 +4,21 @@
 
 <h3>{{ page_title }}</h3>
 
+<form method="GET" action="{{ url_for('players') }}" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search for a player..."
+        value="{{ search or '' }}"
+    >
+
+    <button type="submit">Search</button>
+
+</form>
+
+<br>
+
 <table>
     <thead>
         <tr>
@@ -18,8 +33,11 @@
     </thead>
 
     <tbody>
+
         {% for player in players %}
+
         <tr>
+
             <td>
                 <a href="{{ url_for('player', Playerid=player.Playerid) }}">
                     {{ player.name }}
@@ -34,17 +52,24 @@
 
             <td>
                 {% if player.clubs %}
+
                     {% for club in player.clubs %}
                         <a href="{{ url_for('club', Clubid=club.Clubid) }}">
                             {{ club.name }}
                         </a>
                     {% endfor %}
+
                 {% else %}
+
                     No Club
+
                 {% endif %}
             </td>
+
         </tr>
+
         {% endfor %}
+
     </tbody>
 </table>
 

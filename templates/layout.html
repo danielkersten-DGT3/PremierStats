@@ -1,21 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-<!-- page title - jinga variable-->
-  <title>PremierStats - {{ page_title }}</title>
-  <!-- Link to external CSS file -->
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='football.png') }}">
+    <meta charset="utf-8">
+
+    <title>PremierStats - {{ page_title }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='football.png') }}">
 </head>
+
 <body>
 
-{% include "header.html" %}
-{% include "nav.html" %}
-  <hr>
-<!-- creates a reusable block - placeholder -->
-  {% block content %}{% endblock %}
-<hr>
-{% include "footer.html" %}
+    {% include "header.html" %}
+    {% include "nav.html" %}
+
+    <hr>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <hr>
+
+    {% include "footer.html" %}
+
 </body>
 </html>

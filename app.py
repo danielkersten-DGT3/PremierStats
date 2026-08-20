@@ -436,19 +436,32 @@ def create_app():
             page_title="Clubs",
             clubs=all_clubs)
 
+
     @app.route("/players")
     def players():
-        all_players = Players.query.all()
-        return render_template("players.html", 
-            page_title="Players",
-            players=all_players)
+        search = request.args.get("search", "")
 
+        if search:
+            all_players = Players.query.filter(
+                Players.name.ilike(f"%{search}%")
+            ).all()
+        else:
+            all_players = Players.query.all()
+
+        return render_template(
+            "players.html",
+            page_title="Players",
+            players=all_players,
+            search=search
+        )
+    
     @app.route("/managers")
     def managers():
         all_managers = Managers.query.all()
         return render_template("managers.html", 
             page_title="Players",
             managers=all_managers)
+    
     @app.route("/")
     def root():
         # Load the template file templates/home.html
@@ -469,6 +482,7 @@ def create_app():
         )
     @app.route("/player/<int:Playerid>")
     def player(Playerid):
+
         player = Players.query.get_or_404(Playerid)
 
         return render_template(
@@ -476,6 +490,7 @@ def create_app():
             page_title=player.name,
             player=player
         )
+
     @app.route("/club/<int:Clubid>")
     def club(Clubid):
         club = Clubs.query.get_or_404(Clubid)
