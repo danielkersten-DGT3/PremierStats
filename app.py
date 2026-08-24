@@ -430,7 +430,15 @@ def create_app():
 
     @app.route("/clubs")
     def clubs():
-        all_clubs = Clubs.query.all()
+        search = request.args.get("search", "")
+
+        if search:
+            all_clubs = Clubs.query.filter(
+                Clubs.name.ilike(f"%{search}%")
+            ).all()
+        else:
+            all_clubs = Clubs.query.all()
+
         return render_template(
             "Clubs.html", 
             page_title="Clubs",
@@ -457,9 +465,16 @@ def create_app():
     
     @app.route("/managers")
     def managers():
-        all_managers = Managers.query.all()
+        search = request.args.get("search", "")
+
+        if search:
+            all_managers = Managers.query.filter(
+                Managers.Name.ilike(f"%{search}%")
+            ).all()
+        else:
+            all_managers = Managers.query.all()
         return render_template("managers.html", 
-            page_title="Players",
+            page_title="Managers",
             managers=all_managers)
     
     @app.route("/")
