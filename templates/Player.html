@@ -34,6 +34,7 @@
     <tr>
         <th>Club</th>
         <td>
+            <!--Links to club-->
             {% if player.clubs %}
                 {% for club in player.clubs %}
                     <a href="{{ url_for('club', Clubid=club.Clubid) }}">

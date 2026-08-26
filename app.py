@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 db = SQLAlchemy()
 
+#Tables
 clubs_players = db.Table(
     "clubs_players",
     db.Column("Clubid", db.Integer, db.ForeignKey("clubs.Clubid"), primary_key=True),
@@ -62,7 +63,7 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SECRET_KEY"] = "BenceJamesRussell"
 
-
+    #info for tables
     db.init_app(app)
     with app.app_context():
         db.create_all()
@@ -518,7 +519,9 @@ def create_app():
     
     @app.route("/login", methods=["GET", "POST"])
     def login():
-
+        #Requests username, password and email
+        #If successful sends them to profile
+        #If not gives them error message
         if request.method == "POST":
 
             login_input = request.form["login"]
@@ -546,6 +549,7 @@ def create_app():
     
     @app.route("/profile")
     def profile():
+        #Stores User's Info
         if "userid" not in session:
             return redirect(url_for("login"))
 
@@ -564,6 +568,7 @@ def create_app():
 
     @app.route("/register", methods=["GET", "POST"])
     def register():
+        #Creates User Infor and stores it in database
         if request.method == "POST":
             username = request.form["username"]
             email = request.form["email"]
@@ -607,6 +612,7 @@ def create_app():
 
     @app.route("/logout")
     def logout():
+        #User Log out
         session.pop("username", None)
         return redirect(url_for("root"))
     return app

@@ -25,6 +25,7 @@
 
 <tr>
     <th>Manager</th>
+    <!--Links to Manager-->
     <td>
         {% if club.manager %}
             <a href="{{ url_for('manager', Managerid=club.manager.Managerid) }}">
@@ -45,6 +46,7 @@
 {% if club.players %}
 
 <ul>
+    <!--Links to Player-->
     {% for player in club.players %}
         <li>
             <a href="{{ url_for('player', Playerid=player.Playerid) }}">

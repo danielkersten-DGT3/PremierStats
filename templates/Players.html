@@ -39,6 +39,7 @@
         <tr>
 
             <td>
+                <!--Links to Player-->
                 <a href="{{ url_for('player', Playerid=player.Playerid) }}">
                     {{ player.name }}
                 </a>
@@ -52,7 +53,7 @@
 
             <td>
                 {% if player.clubs %}
-
+                    <!--Links to Club-->
                     {% for club in player.clubs %}
                         <a href="{{ url_for('club', Clubid=club.Clubid) }}">
                             {{ club.name }}

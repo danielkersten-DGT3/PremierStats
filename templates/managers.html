@@ -3,6 +3,7 @@
 {% block content %}
 
 <h3>Managers</h3>
+<!--Search Bar-->
 <form method="GET" action="{{ url_for('managers') }}" class="search-form">
 
     <input
@@ -27,6 +28,7 @@
         {% for manager in managers %}
         <tr>
             <td>
+                <!--Links to Manager-->
                 <a href="{{ url_for('manager', Managerid=manager.Managerid) }}">
                     {{ manager.Name }}
                 </a>
@@ -34,6 +36,7 @@
 
             <td>
                 {% if manager.clubs %}
+                <!--Links to Club-->
                     {% for club in manager.clubs %}
                         <a href="{{ url_for('club', Clubid=club.Clubid) }}">
                             {{ club.name }}
