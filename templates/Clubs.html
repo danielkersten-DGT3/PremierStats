@@ -3,7 +3,7 @@
 {% block content %}
 
 <h3>{{ page_title }}</h3>
-
+<!--Search Bar-->
 <form method="GET" action="{{ url_for('clubs') }}" class="search-form">
 
     <input
@@ -17,6 +17,7 @@
 
 </form>
 
+#columns
 <table>
     <thead>
         <tr>
@@ -28,25 +29,25 @@
         </tr>
     </thead>
 
-
+#Things in the columns
 <tbody>
     {% for club in clubs %}
     <tr>
 
-        <!-- Club name -->
+        #Club name and club detail
         <td>
             <a href="{{ url_for('club', Clubid=club.Clubid) }}">
                 {{ club.name }}
             </a>
         </td>
 
-        <!-- Wins -->
+      #Wins
         <td>{{ club.Wins }}</td>
 
-        <!-- Losses -->
+        #losses
         <td>{{ club.Losses }}</td>
 
-        <!-- Manager -->
+        #managers and URL to go to managers detail
         <td>
             {% if club.manager %}
                 <a href="{{ url_for('manager', Managerid=club.manager.Managerid) }}">
@@ -57,7 +58,7 @@
             {% endif %}
         </td>
 
-        <!-- Players -->
+        #Players and URL to go to player detail
         <td>
             {% if club.players %}
                 <ul>
