@@ -2,7 +2,7 @@
 and render_template (to load an HTML file from the templates folder)'''
 from flask import Flask, render_template, abort, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
-from datetime import date
+from datetime import datetime
 db = SQLAlchemy()
 
 #Tables
@@ -132,8 +132,8 @@ def create_app():
                     Goals=12,
                     Assists=10,
                     Saves=0,
-                    PlayerStartDate=date(2020, 9, 1),
-                    PlayerEndDate=date(2030, 6, 30)
+                    PlayerStartDate=datetime(2020, 9, 1),
+                    PlayerEndDate=datetime(2030, 6, 30)
                 )
 
                 p_rice = Players(
@@ -141,8 +141,8 @@ def create_app():
                     Goals=7,
                     Assists=8,
                     Saves=0,
-                    PlayerStartDate=date(2023, 7, 15),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2023, 7, 15),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_haaland = Players(
@@ -150,8 +150,8 @@ def create_app():
                     Goals=27,
                     Assists=5,
                     Saves=0,
-                    PlayerStartDate=date(2022, 7, 1),
-                    PlayerEndDate=date(2030, 6, 30)
+                    PlayerStartDate=datetime(2022, 7, 1),
+                    PlayerEndDate=datetime(2030, 6, 30)
                 )
 
                 p_salah = Players(
@@ -159,8 +159,8 @@ def create_app():
                     Goals=24,
                     Assists=16,
                     Saves=0,
-                    PlayerStartDate=date(2017, 7, 1),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2017, 7, 1),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
 
                 p_palmer = Players(
@@ -168,8 +168,8 @@ def create_app():
                     Goals=16,
                     Assists=11,
                     Saves=0,
-                    PlayerStartDate=date(2023, 9, 1),
-                    PlayerEndDate=date(2030, 6, 30)
+                    PlayerStartDate=datetime(2023, 9, 1),
+                    PlayerEndDate=datetime(2030, 6, 30)
                 )
 
                 p_onana = Players(
@@ -177,8 +177,8 @@ def create_app():
                     Goals=0,
                     Assists=0,
                     Saves=124,
-                    PlayerStartDate=date(2023, 7, 20),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2023, 7, 20),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_alisson = Players(
@@ -186,16 +186,16 @@ def create_app():
                     Goals=0,
                     Assists=1,
                     Saves=132,
-                    PlayerStartDate=date(2018, 7, 19),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2018, 7, 19),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
                 p_martinelli = Players(
                     name="Gabriel Martinelli",
                     Goals=8,
                     Assists=6,
                     Saves=0,
-                    PlayerStartDate=date(2019, 7, 1),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2019, 7, 1),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
 
                 p_odegaard = Players(
@@ -203,8 +203,8 @@ def create_app():
                     Goals=6,
                     Assists=9,
                     Saves=0,
-                    PlayerStartDate=date(2021, 8, 20),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2021, 8, 20),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_saliba = Players(
@@ -212,8 +212,8 @@ def create_app():
                     Goals=2,
                     Assists=1,
                     Saves=0,
-                    PlayerStartDate=date(2019, 7, 25),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2019, 7, 25),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
 
                 p_van_dijk = Players(
@@ -221,8 +221,8 @@ def create_app():
                     Goals=3,
                     Assists=2,
                     Saves=0,
-                    PlayerStartDate=date(2018, 1, 1),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2018, 1, 1),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
 
                 p_diaz = Players(
@@ -230,8 +230,8 @@ def create_app():
                     Goals=10,
                     Assists=5,
                     Saves=0,
-                    PlayerStartDate=date(2022, 1, 30),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2022, 1, 30),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
 
                 p_mac_allister = Players(
@@ -239,8 +239,8 @@ def create_app():
                     Goals=5,
                     Assists=6,
                     Saves=0,
-                    PlayerStartDate=date(2023, 7, 1),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2023, 7, 1),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_foden = Players(
@@ -248,8 +248,8 @@ def create_app():
                     Goals=14,
                     Assists=8,
                     Saves=0,
-                    PlayerStartDate=date(2017, 7, 1),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2017, 7, 1),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_de_bruyne = Players(
@@ -257,8 +257,8 @@ def create_app():
                     Goals=5,
                     Assists=10,
                     Saves=0,
-                    PlayerStartDate=date(2015, 8, 30),
-                    PlayerEndDate=date(2025, 6, 30)
+                    PlayerStartDate=datetime(2015, 8, 30),
+                    PlayerEndDate=datetime(2025, 6, 30)
                 )
 
                 p_ruben_dias = Players(
@@ -266,8 +266,8 @@ def create_app():
                     Goals=2,
                     Assists=1,
                     Saves=0,
-                    PlayerStartDate=date(2020, 9, 29),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2020, 9, 29),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
 
                 p_nicolas_jackson = Players(
@@ -275,8 +275,8 @@ def create_app():
                     Goals=9,
                     Assists=4,
                     Saves=0,
-                    PlayerStartDate=date(2023, 7, 1),
-                    PlayerEndDate=date(2030, 6, 30)
+                    PlayerStartDate=datetime(2023, 7, 1),
+                    PlayerEndDate=datetime(2030, 6, 30)
                 )
 
                 p_enzo = Players(
@@ -284,8 +284,8 @@ def create_app():
                     Goals=4,
                     Assists=7,
                     Saves=0,
-                    PlayerStartDate=date(2023, 1, 31),
-                    PlayerEndDate=date(2031, 6, 30)
+                    PlayerStartDate=datetime(2023, 1, 31),
+                    PlayerEndDate=datetime(2031, 6, 30)
                 )
 
                 p_madueke = Players(
@@ -293,8 +293,8 @@ def create_app():
                     Goals=6,
                     Assists=3,
                     Saves=0,
-                    PlayerStartDate=date(2023, 1, 23),
-                    PlayerEndDate=date(2030, 6, 30)
+                    PlayerStartDate=datetime(2023, 1, 23),
+                    PlayerEndDate=datetime(2030, 6, 30)
                 )
 
                 p_bruno = Players(
@@ -302,8 +302,8 @@ def create_app():
                     Goals=10,
                     Assists=9,
                     Saves=0,
-                    PlayerStartDate=date(2020, 1, 30),
-                    PlayerEndDate=date(2027, 6, 30)
+                    PlayerStartDate=datetime(2020, 1, 30),
+                    PlayerEndDate=datetime(2027, 6, 30)
                 )
 
                 p_garnacho = Players(
@@ -311,8 +311,8 @@ def create_app():
                     Goals=7,
                     Assists=5,
                     Saves=0,
-                    PlayerStartDate=date(2022, 7, 1),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2022, 7, 1),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_mainoo = Players(
@@ -320,8 +320,8 @@ def create_app():
                     Goals=3,
                     Assists=2,
                     Saves=0,
-                    PlayerStartDate=date(2023, 1, 1),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2023, 1, 1),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_isak = Players(
@@ -329,8 +329,8 @@ def create_app():
                     Goals=15,
                     Assists=4,
                     Saves=0,
-                    PlayerStartDate=date(2022, 8, 26),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2022, 8, 26),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 p_gordon = Players(
@@ -338,8 +338,8 @@ def create_app():
                     Goals=8,
                     Assists=6,
                     Saves=0,
-                    PlayerStartDate=date(2023, 1, 1),
-                    PlayerEndDate=date(2029, 6, 30)
+                    PlayerStartDate=datetime(2023, 1, 1),
+                    PlayerEndDate=datetime(2029, 6, 30)
                 )
 
                 p_son = Players(
@@ -347,8 +347,8 @@ def create_app():
                     Goals=12,
                     Assists=8,
                     Saves=0,
-                    PlayerStartDate=date(2015, 8, 28),
-                    PlayerEndDate=date(2026, 6, 30)
+                    PlayerStartDate=datetime(2015, 8, 28),
+                    PlayerEndDate=datetime(2026, 6, 30)
                 )
 
                 p_maddison = Players(
@@ -356,8 +356,8 @@ def create_app():
                     Goals=7,
                     Assists=8,
                     Saves=0,
-                    PlayerStartDate=date(2023, 7, 1),
-                    PlayerEndDate=date(2028, 6, 30)
+                    PlayerStartDate=datetime(2023, 7, 1),
+                    PlayerEndDate=datetime(2028, 6, 30)
                 )
 
                 db.session.add_all([
@@ -545,6 +545,45 @@ def create_app():
             )
 
         return render_template("login.html")
+
+    @app.route("/add_player", methods=["GET", "POST"])
+    def add_player():
+        clubs = Clubs.query.all()
+        if request.method=="POST":
+            name = request.form["name"]
+            goals = request.form["goals"]
+            assists = request.form["assists"]
+            saves = request.form["saves"]
+            start_date = datetime.strptime(
+                request.form["start_date"],
+                "%Y-%m-%d").date()
+            end_date = datetime.strptime(
+                request.form["end_date"],
+                "%Y-%m-%d").date()
+
+            # Find the selected club
+            club = Clubs.query.get(
+                request.form["club"]
+        )
+            new_player = Players(
+            name=name,
+            Goals=goals,
+            Assists=assists,
+            Saves=saves,
+            PlayerStartDate=start_date,
+            PlayerEndDate=end_date
+        )
+            # Connect player to club
+            new_player.clubs.append(club)
+            db.session.add(new_player)
+            db.session.commit()
+
+            return redirect(url_for("players"))
+        return render_template(
+        "add_player.html",
+        page_title="Add Player",
+        clubs=clubs
+        )
 
     
     @app.route("/profile")

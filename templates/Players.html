@@ -3,20 +3,25 @@
 {% block content %}
 
 <h3>{{ page_title }}</h3>
-<!--Search Bar-->
-<form method="GET" action="{{ url_for('players') }}" class="search-form">
+<div class="player-actions">
+    <!--Search Bar and Add player-->
+    <form method="GET" action="{{ url_for('players') }}" class="search-form">
 
-    <input
-        type="text"
-        name="search"
-        placeholder="Search for a player..."
-        value="{{ search or '' }}"
-    >
+        <input
+            type="text"
+            name="search"
+            placeholder="Search for a player..."
+            value="{{ search or '' }}"
+        >
 
-    <button type="submit">Search</button>
+        <button type="submit">Search</button>
+
+        <a href="{{ url_for('add_player') }}" class="add-player-button">
+            Add Player
+    </a>
 
 </form>
-
+</div>
 <br>
 
 <table>

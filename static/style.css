@@ -1,6 +1,6 @@
 
 /* ================================================
-   Main stylesheet for the Football Database Website
+   Main stylesheet for Premier Stats
    All page styling is controlled from this file
    ================================================ */
 
@@ -394,13 +394,6 @@ footer {
    Search
    ================================================ */
 
-.search-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    align-items: center;
-}
-
 .search-form input {
     padding: 10px;
     width: 300px;
@@ -414,18 +407,73 @@ footer {
     outline: none;
     border-color: #0b8f45;
 }
-
-.search-form button {
-    padding: 10px 18px;
-    background-color: #075e2b;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
+.form-container {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    max-width: 600px;
 }
 
-.search-form button:hover {
-    background-color: #0b8f45;
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #087a3d;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border: 2px solid #087a3d;
+}
+.search-form button,
+.add-button,
+.add-player-button {
+    padding: 10px 20px;
+    height: 40px;
+    background-color: #087a3d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.search-form button:hover,
+.add-button:hover,
+.add-player-button:hover {
+    background-color: #065c2e;
+}
+
+.player-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin: 0;
 }
