@@ -3,6 +3,7 @@ and render_template (to load an HTML file from the templates folder)'''
 from flask import Flask, render_template, abort, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from werkzeug import check_passord_hash, generate_password_hash
 db = SQLAlchemy()
 
 #Tables
@@ -561,7 +562,7 @@ def create_app():
                 request.form["end_date"],
                 "%Y-%m-%d").date()
 
-            # Find the selected club
+            #Find the selected club
             club = Clubs.query.get(
                 request.form["club"]
         )
@@ -573,7 +574,7 @@ def create_app():
             PlayerStartDate=start_date,
             PlayerEndDate=end_date
         )
-            # Connect player to club
+            #Connect player to club
             new_player.clubs.append(club)
             db.session.add(new_player)
             db.session.commit()
@@ -584,6 +585,15 @@ def create_app():
         page_title="Add Player",
         clubs=clubs
         )
+
+    @app.route("/delete_player/<int:Playerid>", methods=["POST"])
+    def delete_player(Playerid):
+        player = Players.query.get_or_404(Playerid)
+
+        db.session.delete(player)
+        db.session.commit()
+
+        return redirect(url_for("players"))
 
     
     @app.route("/profile")

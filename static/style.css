@@ -18,7 +18,7 @@ body {
    Header
    ================================================ */
 
-/* Football-themed header banner */
+/*header banner */
 header {
     background: linear-gradient(135deg, #075e2b, #0b8f45);
     color: white;
@@ -476,4 +476,19 @@ footer {
     display: flex;
     gap: 10px;
     margin: 0;
+}
+
+.delete-button {
+    padding: 8px 14px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background-color: #922b21;
 }
