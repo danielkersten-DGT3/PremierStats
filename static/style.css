@@ -416,10 +416,6 @@ footer {
     max-width: 600px;
 }
 
-.form-group {
-    margin-bottom: 18px;
-}
-
 .form-group label {
     display: block;
     font-weight: bold;
@@ -469,7 +465,6 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 .search-form {

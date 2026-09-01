@@ -3,7 +3,7 @@ and render_template (to load an HTML file from the templates folder)'''
 from flask import Flask, render_template, abort, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from werkzeug import check_passord_hash, generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 db = SQLAlchemy()
 
 #Tables
@@ -518,35 +518,6 @@ def create_app():
             club=club
         )
     
-    @app.route("/login", methods=["GET", "POST"])
-    def login():
-        #Requests username, password and email
-        #If successful sends them to profile
-        #If not gives them error message
-        if request.method == "POST":
-
-            login_input = request.form["login"]
-            password = request.form["password"]
-
-            user = Users.query.filter(
-                (Users.Username == login_input) |
-                (Users.Email == login_input)
-            ).first()
-
-            if user and user.Password == password:
-
-                session["username"] = user.Username
-                session["userid"] = user.Userid
-
-                return redirect(url_for("profile"))
-
-            return render_template(
-                "login.html",
-                error="Incorrect username/email or password"
-            )
-
-        return render_template("login.html")
-
     @app.route("/add_player", methods=["GET", "POST"])
     def add_player():
         clubs = Clubs.query.all()
@@ -613,7 +584,34 @@ def create_app():
             email=user.Email
     )
 
+    @app.route("/login", methods=["GET", "POST"])
+    def login():
+        #Requests username, password and email
+        #If successful sends them to profile
+        #If not gives them error message
+        if request.method == "POST":
 
+            login_input = request.form["login"]
+            password = request.form["password"]
+
+            user = Users.query.filter(
+                (Users.Username == login_input) |
+                (Users.Email == login_input)
+            ).first()
+
+            if user and check_password_hash(user.Password, password):
+
+                session["username"] = user.Username
+                session["userid"] = user.Userid
+
+                return redirect(url_for("profile"))
+
+            return render_template(
+                "login.html",
+                error="Incorrect username/email or password"
+            )
+
+        return render_template("login.html")
 
     @app.route("/register", methods=["GET", "POST"])
     def register():
@@ -646,10 +644,11 @@ def create_app():
                     )
 
             # Create new user
+            hashed_password = generate_password_hash(password)
             new_user = Users(
                 Username=username,
                 Email=email,
-                Password=password
+                Password=hashed_password
             )
 
             db.session.add(new_user)
