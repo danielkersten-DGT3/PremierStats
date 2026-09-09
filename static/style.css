@@ -543,3 +543,58 @@ footer {
 table {
     margin-top: 10px;
 }
+
+/* ================================================
+   Edit Player Form
+   ================================================ */
+
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: white;
+}
+
+.form-container select:focus {
+    outline: none;
+    border: 2px solid #087a3d;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    height: 40px;
+    background-color: #087a3d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #065c2e;
+}
+
+/* Edit Player Button */
+.edit-button {
+    padding: 8px 14px;
+    background-color: #087a3d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.edit-button:hover {
+    background-color: #065c2e;
+    color: white;
+    text-decoration: none;
+}

@@ -574,12 +574,60 @@ def create_app():
         return render_template(
             "profile.html",
             username=user.Username,
-            email=user.Email
+            email=user.Email,
             Admin=user.Admin
     )
 
+    @app.route("/edit_player/<int:Playerid>", methods=["GET", "POST"])
+    def edit_player(Playerid):
+
+        # Only admins can edit
+        if session.get("admin") != True:
+            abort(403)
+
+        player = Players.query.get_or_404(Playerid)
+        clubs = Clubs.query.all()
+
+        if request.method == "POST":
+
+            player.name = request.form["name"]
+            player.Goals = request.form["goals"]
+            player.Assists = request.form["assists"]
+            player.Saves = request.form["saves"]
+
+            player.PlayerStartDate = datetime.strptime(
+                request.form["start_date"],
+                "%Y-%m-%d"
+            ).date()
+
+            player.PlayerEndDate = datetime.strptime(
+                request.form["end_date"],
+                "%Y-%m-%d"
+            ).date()
+
+            # Change club
+            club = Clubs.query.get(request.form["club"])
+
+            player.clubs.clear()
+            player.clubs.append(club)
+
+            db.session.commit()
+
+            return redirect(url_for("players"))
+
+        return render_template(
+            "edit_player.html",
+            page_title="Edit Player",
+            player=player,
+            clubs=clubs
+        )
+
     @app.route("/delete_player/<int:Playerid>", methods=["POST"])
     def delete_player(Playerid):
+
+        if not session.get("admin"):
+            abort(403)
+
         player = Players.query.get_or_404(Playerid)
 
         db.session.delete(player)
@@ -608,7 +656,10 @@ def create_app():
 
                 session["username"] = user.Username
                 session["userid"] = user.Userid
-                session["admin"] = user.Admin
+                if user.Username.lower() == "admin":
+                    session["admin"] = True
+                else:
+                    session["admin"] = False
 
                 return redirect(url_for("profile"))
 
@@ -659,7 +710,8 @@ def create_app():
             new_user = Users(
                     Username=username,
                     Email=email,
-                    Password=hashed_password
+                    Password=hashed_password,
+                    Admin=Admin
                 )
 
             db.session.add(new_user)
@@ -672,7 +724,7 @@ def create_app():
     @app.route("/logout")
     def logout():
         #User Log out
-        session.pop("username", None)
+        session.clear()
         return redirect(url_for("root"))
     return app
 
