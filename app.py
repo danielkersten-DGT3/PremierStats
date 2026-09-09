@@ -57,6 +57,7 @@ class Users(db.Model):
     Username = db.Column(db.String(80), unique=True, nullable=False)
     Email = db.Column(db.String(120), unique=True, nullable=False)
     Password = db.Column(db.String(200), nullable=False)
+    Admin = db.Column(db.Boolean, default=False)
 
 def create_app():
     app = Flask(__name__)
@@ -557,14 +558,6 @@ def create_app():
         clubs=clubs
         )
 
-    @app.route("/delete_player/<int:Playerid>", methods=["POST"])
-    def delete_player(Playerid):
-        player = Players.query.get_or_404(Playerid)
-
-        db.session.delete(player)
-        db.session.commit()
-
-        return redirect(url_for("players"))
 
     
     @app.route("/profile")
@@ -582,7 +575,19 @@ def create_app():
             "profile.html",
             username=user.Username,
             email=user.Email
+            Admin=user.Admin
     )
+
+    @app.route("/delete_player/<int:Playerid>", methods=["POST"])
+    def delete_player(Playerid):
+        player = Players.query.get_or_404(Playerid)
+
+        db.session.delete(player)
+        db.session.commit()
+        
+
+        return redirect(url_for("players"))
+
 
     @app.route("/login", methods=["GET", "POST"])
     def login():
@@ -603,6 +608,7 @@ def create_app():
 
                 session["username"] = user.Username
                 session["userid"] = user.Userid
+                session["admin"] = user.Admin
 
                 return redirect(url_for("profile"))
 
@@ -643,13 +649,18 @@ def create_app():
                         error="Email already exists"
                     )
 
+            if username == "Admin":
+                Admin = True
+            else:
+                Admin = False
+
             # Create new user
             hashed_password = generate_password_hash(password)
             new_user = Users(
-                Username=username,
-                Email=email,
-                Password=hashed_password
-            )
+                    Username=username,
+                    Email=email,
+                    Password=hashed_password
+                )
 
             db.session.add(new_user)
             db.session.commit()

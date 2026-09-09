@@ -1,63 +1,64 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<h3>{{ page_title }}</h3>
-
 <div class="form-container">
+    <h4>{{ page_title }}</h4>
 
-    <form method="POST">
+    <div class="form-container">
 
-        <div class="form-group">
-            <label for="name">Player Name</label>
-            <input type="text" id="name" name="name" required>
-        </div>
+        <form method="POST">
 
-        <div class="form-group">
-            <label for="goals">Goals</label>
-            <input type="number" id="goals" name="goals" min="0" required>
-        </div>
+            <div class="form-group">
+                <label for="name">Player Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
 
-        <div class="form-group">
-            <label for="assists">Assists</label>
-            <input type="number" id="assists" name="assists" min="0" required>
-        </div>
+            <div class="form-group">
+                <label for="goals">Goals</label>
+                <input type="number" id="goals" name="goals" min="0" required>
+            </div>
 
-        <div class="form-group">
-            <label for="saves">Saves</label>
-            <input type="number" id="saves" name="saves" min="0" required>
-        </div>
+            <div class="form-group">
+                <label for="assists">Assists</label>
+                <input type="number" id="assists" name="assists" min="0" required>
+            </div>
 
-        <div class="form-group">
-            <label for="start_date">Start Date</label>
-            <input type="date" id="start_date" name="start_date" required>
-        </div>
+            <div class="form-group">
+                <label for="saves">Saves</label>
+                <input type="number" id="saves" name="saves" min="0" required>
+            </div>
 
-        <div class="form-group">
-            <label for="end_date">End Date</label>
-            <input type="date" id="end_date" name="end_date" required>
-        </div>
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
 
-        <div class="form-group">
-            <label for="club">Club</label>
+            <div class="form-group">
+                <label for="end_date">End Date</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
 
-            <select id="club" name="club" required>
+            <div class="form-group">
+                <label for="club">Club</label>
 
-                <option value="">Select a club</option>
+                <select id="club" name="club" required>
 
-                {% for club in clubs %}
-                    <option value="{{ club.Clubid }}">
-                        {{ club.name }}
-                    </option>
-                {% endfor %}
+                    <option value="">Select a club</option>
 
-            </select>
-        </div>
+                    {% for club in clubs %}
+                        <option value="{{ club.Clubid }}">
+                            {{ club.name }}
+                        </option>
+                    {% endfor %}
 
-        <button type="submit" class="add-button">Add Player</button>
+                </select>
+            </div>
 
-    </form>
+            <button type="submit" class="add-button">Add Player</button>
 
+        </form>
+
+    </div>
 </div>
 
 {% endblock %}

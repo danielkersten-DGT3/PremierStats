@@ -87,6 +87,26 @@ h3 {
     color: #0a7e3c;
 	font-size: 2.2em;
 }
+/* Add Player heading */
+.form-container h4 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #0a7e3c;
+	font-size: 2.2em;
+}
+
+/* Add Player form */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
 /* ================================================
    Football Tables
    ================================================ */
@@ -485,4 +505,41 @@ footer {
 
 .delete-button:hover {
     background-color: #922b21;
+}
+
+/* ================================================
+   Add Player Form
+   ================================================ */
+
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Centre the Add Player heading */
+.form-container h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Space between form fields */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Centre the button */
+.form-container button {
+    display: block;
+    margin: 20px auto 0;
+}
+
+/* Reduce unnecessary table spacing */
+table {
+    margin-top: 10px;
 }

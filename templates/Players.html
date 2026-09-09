@@ -34,7 +34,9 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Club</th>
+            {% if session.get("Admin") %}
             <th></th>
+            {% endif %}
         </tr>
     </thead>
 
@@ -73,6 +75,7 @@
                 {% endif %}
             </td>
 
+            {% if session.get("Admin") %}
             <td>
                 <!--Delete Player-->
             <form method="POST" action="{{ url_for('delete_player', Playerid=player.Playerid) }}">
@@ -83,6 +86,7 @@
                 </button>
             </form>
             </td>
+            {% endif %}
         </tr>
 
         {% endfor %}
