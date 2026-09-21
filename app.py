@@ -562,7 +562,7 @@ def create_app():
     
     @app.route("/profile")
     def profile():
-        #Stores User's Info
+       
         if "userid" not in session:
             return redirect(url_for("login"))
 
@@ -625,6 +625,7 @@ def create_app():
     @app.route("/delete_player/<int:Playerid>", methods=["POST"])
     def delete_player(Playerid):
 
+        #Checks if user an admin
         if not session.get("admin"):
             abort(403)
 
