@@ -1,6 +1,6 @@
 ''' Import the Flask class (to create the web app)
 and render_template (to load an HTML file from the templates folder)'''
-from flask import Flask, render_template, abort, request, redirect, url_for, session
+from flask import Flask, render_template, abort, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -717,6 +717,7 @@ def create_app():
 
             db.session.add(new_user)
             db.session.commit()
+            flash("Account created successfully! You can now log in.", "success")
             return redirect(url_for("login"))
         return render_template("register.html")
 

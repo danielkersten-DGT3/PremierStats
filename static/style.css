@@ -478,6 +478,7 @@ footer {
 .add-button:hover,
 .add-player-button:hover {
     background-color: #065c2e;
+    color: white;
 }
 
 .player-actions {
@@ -597,4 +598,29 @@ table {
     background-color: #065c2e;
     color: white;
     text-decoration: none;
+}
+
+.flash-messages {
+    max-width: 600px;
+    margin: 15px auto;
+}
+
+.flash {
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.flash.success {
+    background-color: #d9f5df;
+    color: #075e2b;
+    border: 2px solid #0b8f45;
+}
+
+.flash.error {
+    background-color: #ffe0e0;
+    color: #a00000;
+    border: 2px solid #d00000;
 }
